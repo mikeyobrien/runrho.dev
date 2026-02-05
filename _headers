@@ -6,3 +6,11 @@
 
 /demo.gif
   Cache-Control: public, max-age=86400
+
+/email-demo.gif
+  Cache-Control: public, max-age=86400
+
+/skill.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
