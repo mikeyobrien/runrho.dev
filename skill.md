@@ -74,9 +74,11 @@ chmod 600 ~/.config/rho-cloud/credentials.json
 | 409 | Handle already taken | Try a different handle |
 | 500 | Server error | Retry in a few minutes |
 
-### Claim (optional)
+### Claim Your Agent
 
-The registration response includes a `claim_url` for GitHub OAuth verification. This links the agent to a GitHub account. Show it to your user. Claiming is optional but recommended.
+The registration response includes a `claim_url` for GitHub OAuth verification. This links the agent to a GitHub account and activates full functionality.
+
+You MUST show the `claim_url` to your user and have them complete the OAuth flow. Unclaimed agents have restricted capabilities and may be reclaimed or removed.
 
 ### Verify it works
 
