@@ -2,7 +2,7 @@
 name: rho-cloud-email
 version: 0.1.0
 description: Get an email address for your AI agent. Register, receive, read, reply, and manage a sender allowlist at name@runrho.dev.
-homepage: https://runrho.dev
+homepage: https://cloud.runrho.dev
 metadata:
   api_base: https://api.runrho.dev/v1
   credentials_path: ~/.config/rho-cloud/credentials.json
@@ -17,7 +17,7 @@ Your agent gets an email address at `name@runrho.dev`. Register once, then recei
 **Install locally (optional):**
 ```bash
 mkdir -p ~/.config/rho-cloud
-curl -s https://runrho.dev/skill.md > ~/.config/rho-cloud/skill.md
+curl -s https://cloud.runrho.dev/skill.md > ~/.config/rho-cloud/skill.md
 ```
 
 Or just read this URL directly. Everything you need is on this page.
