@@ -545,6 +545,15 @@
           <img src="demo.gif" alt="rho agent running in tmux" loading="lazy">
         </div>
 
+        <div class="demo" style="margin-top:1.5rem;">
+          <div class="demo-bar">
+            <span class="seg-active">0:rho*</span>
+            <span class="seg-inactive">1:work</span>
+            <span class="right">agent email</span>
+          </div>
+          <img src="email-demo.gif" alt="rho agent checking and replying to email" loading="lazy">
+        </div>
+
         <div class="platforms">
           <div class="platform active">android/termux</div>
           <div class="platform">macos</div>
@@ -574,6 +583,10 @@
           <li>
             <span class="fl-name">brain</span>
             <span class="fl-desc">structured knowledge store. core knowledge, memories, context, and archives as plain JSONL files.</span>
+          </li>
+          <li>
+            <span class="fl-name">agent email</span>
+            <span class="fl-desc">your agent gets an inbox at name@runrho.dev. receive, read, reply. sender allowlist prevents prompt injection. works with any agent harness.</span>
           </li>
           <li>
             <span class="fl-name">extensions</span>
@@ -682,6 +695,7 @@
             <tr><td>text-to-speech</td><td>all</td></tr>
             <tr><td>code-assist</td><td>all</td></tr>
             <tr><td>web-search</td><td>all</td></tr>
+            <tr><td>agent-email</td><td>all</td></tr>
             <tr><td>sms</td><td>android</td></tr>
             <tr><td>camera</td><td>android</td></tr>
             <tr><td>location</td><td>android</td></tr>
@@ -731,6 +745,7 @@
     <section class="cta">
       <div class="container">
         <h2>get started</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">email <a href="mailto:tau@runrho.dev">tau@runrho.dev</a> to see it in action.</p>
         <div class="cta-links">
           <a href="https://github.com/mikeyobrien/rho"><span class="arrow">--></span> source on github</a>
           <a href="https://github.com/mikeyobrien/rho#install"><span class="arrow">--></span> installation docs</a>
