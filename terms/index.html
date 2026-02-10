@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rhobot.dev terms of service</title>
+  <meta name="description" content="Terms of Service for rhobot.dev and Rho Cloud services.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-alt: #111111;
+      --bg-card: #161616;
+      --border: #1a1a1a;
+      --border-bright: #2a2a2a;
+      --text: #c8c8c8;
+      --text-muted: #666666;
+      --text-dim: #444444;
+      --green: #22c55e;
+      --cyan: #5eead4;
+      --yellow: #fbbf24;
+      --red: #ef4444;
+      --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 15px; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { color: var(--cyan); font-size: 0.9em; }
+
+    .container {
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    nav {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-seg {
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .nav-seg-logo {
+      color: var(--bg);
+      background: var(--green);
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+    }
+
+    .nav-sep {
+      color: var(--green);
+      font-size: 1.6rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    main { padding: 3rem 0 4rem; }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin: 1.75rem 0 0.75rem;
+      font-weight: 700;
+    }
+
+    p { margin: 0.75rem 0; color: var(--text); }
+    ul { margin: 0.5rem 0 0.75rem 1.25rem; color: var(--text); }
+    li { margin: 0.35rem 0; }
+
+    .muted { color: var(--text-muted); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 1.25rem 0;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    footer a { color: var(--text-dim); margin-left: 1rem; }
+    footer a:hover { color: var(--text-muted); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .nav-inner { padding: 0 1rem; }
+      .nav-seg { padding: 0.6rem 0.75rem; }
+      .nav-seg-logo { padding: 0.6rem 0.75rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-seg nav-seg-logo">rhobot</div><div class="nav-sep"></div><div class="nav-seg" style="color:var(--text-muted);">terms</div>
+      <div class="nav-links">
+        <a href="/">rho</a>
+        <a href="/email">email</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h1>terms of service</h1>
+      <div class="sub">last updated: 2026-02-06</div>
+
+      <div class="card">
+        <p class="muted">
+          This is a small project and this document is not legal advice. It is here so we can run a paid service without pretending we have none of the usual rules.
+        </p>
+      </div>
+
+      <h2>1. who we are</h2>
+      <p>
+        These terms apply to rhobot.dev and the Rho Cloud API at <code>api.rhobot.dev</code> (the "Service").
+        "We" means the operator of the Service under the legal business name <b>Rhobot</b>.
+        Contact: <a href="mailto:tau@rhobot.dev">tau@rhobot.dev</a>.
+      </p>
+
+      <h2>2. acceptance</h2>
+      <p>
+        By using the Service, you agree to these terms. If you do not agree, do not use the Service.
+      </p>
+
+      <h2>3. accounts and access</h2>
+      <p>
+        Access is controlled by API keys and an identity provider (Clerk). You are responsible for keeping your API key and devices secure.
+      </p>
+
+      <h2>4. what the service does</h2>
+      <p>
+        The Service provides email addresses for AI agents, inbound message storage, and limited outbound sending.
+        Features and limits depend on your plan.
+      </p>
+
+      <h2>5. acceptable use</h2>
+      <p>You may not use the Service to:</p>
+      <ul>
+        <li>send spam, scams, or unsolicited bulk email</li>
+        <li>harass, threaten, or impersonate others</li>
+        <li>distribute malware or attempt to gain unauthorized access to systems</li>
+        <li>break the law or help others break the law</li>
+        <li>probe, scan, or test our infrastructure without permission</li>
+      </ul>
+      <p>
+        If your agent sends email, you are responsible for what it sends. "My agent did it" is not a defense.
+      </p>
+
+      <h2>6. your content</h2>
+      <p>
+        You keep ownership of the content you send to or store in the Service.
+        We process and store messages and attachments only to operate the Service.
+      </p>
+
+      <h2>7. data retention and deletion</h2>
+      <p>
+        We keep messages for a limited time based on your tier. Older messages may be deleted or archived.
+        If you delete an agent, we delete associated messages and stored objects.
+      </p>
+
+      <h2>8. paid plans, billing, and refunds</h2>
+      <p>
+        Paid plans are processed by Paddle, our merchant of record. Paddle handles taxes and invoices.
+        Pricing and renewal terms are shown at checkout.
+      </p>
+      <p>
+        Refund window: <b>14 days</b> from the start of a new paid billing period. See <a href="/refund">refund policy</a>.
+        Cancellations take effect at the end of the current billing period unless stated otherwise.
+      </p>
+
+      <h2>9. service availability</h2>
+      <p>
+        The Service is provided "as is". It may change, break, or be unavailable. We may add or remove features.
+      </p>
+
+      <h2>10. termination</h2>
+      <p>
+        We may suspend or terminate access if we believe your use violates these terms or creates risk for other people.
+      </p>
+
+      <h2>11. disclaimers</h2>
+      <p>
+        We do not guarantee delivery of email. We do not guarantee that messages will be received, stored, or forwarded.
+        AI agents can produce incorrect output. You are responsible for reviewing results.
+      </p>
+
+      <h2>12. limitation of liability</h2>
+      <p>
+        To the maximum extent permitted by law, we are not liable for indirect, incidental, special, consequential, or punitive damages.
+        Our total liability for any claim is limited to the amount you paid us in the 12 months before the claim.
+      </p>
+
+      <h2>13. changes</h2>
+      <p>
+        We may update these terms. If you continue to use the Service after an update, you accept the updated terms.
+      </p>
+
+      <h2>14. contact</h2>
+      <p>
+        Questions or abuse reports: <a href="mailto:tau@rhobot.dev">tau@rhobot.dev</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span>rhobot.dev // terms</span>
+        <div>
+          <a href="/privacy">privacy</a>
+          <a href="/refund">refunds</a>
+          <a href="/email">email</a>
+          <a href="/">rho</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

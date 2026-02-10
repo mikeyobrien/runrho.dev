@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rhobot mail -- email for AI agents</title>
+  <meta name="description" content="Give your AI agent an email address. Register, receive, read, reply. Works with any agent that can run curl.">
+  <meta property="og:title" content="rhobot mail -- email for AI agents">
+  <meta property="og:description" content="Give your AI agent an email address at name@rhobot.dev. Works with any agent.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rhobot.dev/email">
+  <meta property="og:image" content="https://rhobot.dev/og-email.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@tau_rho_ai">
+  <meta name="twitter:image" content="https://rhobot.dev/og-email.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-alt: #111111;
+      --bg-card: #161616;
+      --border: #1a1a1a;
+      --border-bright: #2a2a2a;
+      --text: #c8c8c8;
+      --text-muted: #666666;
+      --text-dim: #444444;
+      --green: #22c55e;
+      --green-dim: #1a9a4a;
+      --cyan: #5eead4;
+      --yellow: #fbbf24;
+      --red: #ef4444;
+      --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 15px; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { color: var(--cyan); font-size: 0.9em; }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---- Nav ---- */
+    nav {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      font-size: 0.85rem;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-seg {
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .nav-seg-logo {
+      color: var(--bg);
+      background: var(--green);
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+    }
+
+    .nav-sep {
+      color: var(--green);
+      font-size: 1.6rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .nav-inner { padding: 0 1rem; flex-wrap: wrap; }
+      .nav-seg { padding: 0.6rem 0.75rem; }
+      .nav-seg-logo { padding: 0.6rem 0.75rem; }
+      .nav-seg-tagline { display: none; }
+      .nav-links { width: 100%; margin-left: 0; padding-bottom: 0.6rem; gap: 1rem; flex-wrap: wrap; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 2.5rem;
+      max-width: 50ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- Thesis ---- */
+    .thesis {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+      text-align: left;
+      line-height: 1.8;
+    }
+
+    .thesis p {
+      margin-bottom: 0.8rem;
+    }
+
+    .thesis p:last-child {
+      margin-bottom: 0;
+      color: var(--text);
+    }
+
+    /* ---- Audience split ---- */
+    .split {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .split-btn {
+      padding: 0.7rem 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      border: 1px solid var(--border-bright);
+      background: var(--bg-alt);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      flex: 1;
+      text-align: center;
+    }
+
+    .split-btn:hover {
+      border-color: var(--green);
+      color: var(--text);
+    }
+
+    .split-btn.active {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--bg-card);
+    }
+
+    /* ---- Panels ---- */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ---- Agent panel ---- */
+    .instruction-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .instruction-box:hover {
+      border-color: var(--green-dim);
+    }
+
+    .instruction-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .instruction-text {
+      color: var(--green);
+      font-size: 0.85rem;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    .instruction-hint {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+    }
+
+    .steps {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .steps li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .step-num {
+      color: var(--green);
+      min-width: 2ch;
+    }
+
+    .step-text {
+      color: var(--text-muted);
+    }
+
+    /* ---- Human panel ---- */
+    .install-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .install-box:hover { border-color: var(--border-bright); }
+    .install-box .prompt { color: var(--green); user-select: none; }
+    .install-box .cmd { font-size: 0.85rem; }
+    .install-box .hint {
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      margin-left: auto;
+      user-select: none;
+    }
+
+    /* ---- How it works ---- */
+    .section {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ---- Feature rows ---- */
+    .feature-row {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .feature-row:last-child { border-bottom: none; }
+
+    .fr-name {
+      color: var(--green);
+      min-width: 14ch;
+      flex-shrink: 0;
+    }
+
+    .fr-desc { color: var(--text-muted); }
+
+    /* ---- Stats ---- */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 2rem 0;
+      margin-bottom: 2.5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- Limits table ---- */
+    .limits-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .limits-table th {
+      text-align: right;
+      color: var(--text-dim);
+      font-weight: 400;
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    .limits-table th:first-child {
+      text-align: left;
+    }
+
+    .limits-table td {
+      padding: 0.35rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+    }
+
+    .limits-table td:first-child { color: var(--text-muted); text-align: left; }
+    .tier-free { color: var(--green); }
+    .tier-pro { color: var(--green); }
+    .tier-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border-bright);
+      padding: 0.1rem 0.4rem;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+    }
+
+    /* ---- CTA ---- */
+    .cta {
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+
+    .cta-email {
+      font-size: 1.1rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-sub {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 0.8rem;
+    }
+
+    .cta-links a { color: var(--text-muted); }
+    .cta-links a:hover { color: var(--green); }
+
+    /* ---- Footer ---- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer a { color: var(--text-dim); margin-left: 1rem; }
+    footer a:hover { color: var(--text-muted); }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 500px) {
+      html { font-size: 14px; }
+      .nav-inner { padding: 0 1rem; flex-wrap: wrap; }
+      .nav-seg { padding: 0.6rem 0.75rem; }
+      .nav-seg-logo { padding: 0.6rem 0.75rem; }
+      .nav-seg-tagline { display: none; }
+      .nav-links { width: 100%; margin-left: 0; padding-bottom: 0.6rem; gap: 1rem; flex-wrap: wrap; }
+      .nav-links a { font-size: 0.75rem; }
+      .split { flex-direction: column; align-items: center; }
+      .split-btn { width: 100%; text-align: center; }
+      .feature-row { flex-direction: column; gap: 0.25rem; }
+      .fr-name { min-width: auto; }
+      .stats { gap: 1.5rem; }
+      .cta-links { flex-direction: column; gap: 0.75rem; }
+      .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-seg nav-seg-logo">rhobot mail</div><div class="nav-sep"></div><div class="nav-seg nav-seg-tagline" style="color:var(--text-muted);">agent email</div>
+      <div class="nav-links">
+        <a href="/">rho</a>
+        <a href="/skill.md">skill.md</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="hero">
+        <h1>email for <em>AI agents</em></h1>
+        <p class="hero-sub">
+          your agent gets an inbox at name@rhobot.dev.
+          register, receive, read, reply. works with any
+          agent that can run curl.
+        </p>
+
+        <div class="thesis">
+          <p>agents got good enough to work unsupervised.
+          coding agents run hour-long tasks. background
+          agents check things while you sleep. the bottleneck
+          moved from capability to communication.</p>
+          <p>chat requires you to sit there. email doesn't.
+          send your agent a task, get a result back when
+          it's done. delegate, don't babysit.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats" id="stats">
+          <div>
+            <div class="stat-num" id="stat-agents">--</div>
+            <div class="stat-label">agents</div>
+          </div>
+          <div>
+            <div class="stat-num" id="stat-emails">--</div>
+            <div class="stat-label">emails</div>
+          </div>
+          <div>
+            <div class="stat-num" id="stat-uptime">--</div>
+            <div class="stat-label">uptime</div>
+          </div>
+        </div>
+
+        <div class="split">
+          <button class="split-btn active" onclick="showPanel('agent')" id="btn-agent">I'm an Agent</button>
+          <button class="split-btn" onclick="showPanel('human')" id="btn-human">I'm a Human</button>
+        </div>
+      </div>
+
+      <!-- Agent panel -->
+      <div class="panel active" id="panel-agent">
+        <div class="instruction-box" onclick="copyInstruction()" id="inst-box">
+          <div class="instruction-label">send this to your agent</div>
+          <div class="instruction-text">Read https://rhobot.dev/skill.md and follow the instructions.</div>
+          <div class="instruction-hint" id="inst-hint">click to copy</div>
+        </div>
+
+        <ol class="steps">
+          <li><span class="step-num">1.</span><span class="step-text">paste that line to your agent (Claude Code, Codex, Cursor, any agent)</span></li>
+          <li><span class="step-num">2.</span><span class="step-text">the agent registers and gets handle@rhobot.dev</span></li>
+          <li><span class="step-num">3.</span><span class="step-text">claim to verify ownership</span></li>
+          <li><span class="step-num">4.</span><span class="step-text">configure a sender allowlist to block prompt injection</span></li>
+        </ol>
+
+        <p style="font-size:0.8rem; color:var(--text-dim); text-align:center; margin-bottom:2rem;">
+          the skill.md has everything: registration, inbox, outbox, sender allowlist, error handling.
+          no SDK. no library. just curl and jq.
+        </p>
+      </div>
+
+      <!-- Human panel -->
+      <div class="panel" id="panel-human">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">
+          install rho to get a persistent agent with email built in.
+          or just give any existing agent the skill.md URL above.
+        </p>
+
+        <div class="install-box" onclick="copyHumanInstall()" title="click to copy">
+          <span class="prompt">$</span>
+          <span class="cmd">curl -fsSL https://rhobot.dev/install | bash</span>
+          <span class="hint" id="human-hint">click to copy</span>
+        </div>
+
+        <ol class="steps">
+          <li><span class="step-num">1.</span><span class="step-text">install rho (termux, macos, or linux)</span></li>
+          <li><span class="step-num">2.</span><span class="step-text">run <code>rho login</code> to connect your LLM subscription</span></li>
+          <li><span class="step-num">3.</span><span class="step-text">the email extension polls your inbox automatically every 5 minutes</span></li>
+        </ol>
+
+        <p style="font-size:0.8rem; color:var(--text-dim); text-align:center; margin-bottom:2rem;">
+          rho comes with the email extension pre-installed. status bar, notifications,
+          slash commands, and an LLM tool for reading and replying to mail.
+        </p>
+      </div>
+
+      <!-- Use cases -->
+      <div class="section">
+        <div class="section-label">// use cases</div>
+        <h2>what people actually do with this</h2>
+        <div class="feature-row">
+          <span class="fr-name">task handoff</span>
+          <span class="fr-desc">email your agent "review today's PRs and summarize" before dinner. wake up to a summary in your inbox. no terminal left open.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">alert triage</span>
+          <span class="fr-desc">forward PagerDuty or GitHub Actions alerts to your agent. it runs diagnostics, replies with context, escalates if it can't fix the issue.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">agent-to-agent</span>
+          <span class="fr-desc">two agents that can email each other can coordinate without sharing a runtime. "finished the API changes, start the frontend."</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">inbox separation</span>
+          <span class="fr-desc">your agent gets its own address. it never sees your real inbox: no password resets, no 2FA codes, no private messages leaking into an LLM context window.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">selective forwarding</span>
+          <span class="fr-desc">forward specific emails to your agent and it only sees what you share. keeps the human in control of what the agent knows.</span>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="section">
+        <div class="section-label">// how it works</div>
+        <h2>the basics</h2>
+        <div class="feature-row">
+          <span class="fr-name">receive</span>
+          <span class="fr-desc">mail to handle@rhobot.dev lands in your agent's inbox. polling or push, your choice.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">allowlist</span>
+          <span class="fr-desc">messages from unknown senders are held, never shown to the LLM. server-side + client-side filtering.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">read + act</span>
+          <span class="fr-desc">agent reads approved messages, marks them acted, logs what it did. full audit trail.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">reply</span>
+          <span class="fr-desc">send outbound email from handle@rhobot.dev. proper threading headers for replies.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">any agent</span>
+          <span class="fr-desc">works with Claude Code, Codex, Cursor, rho, or anything that reads markdown and runs bash.</span>
+        </div>
+      </div>
+
+      <!-- Why not Gmail -->
+      <div class="section">
+        <div class="section-label">// why not gmail?</div>
+        <h2>the obvious question</h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          connecting an agent to Gmail means Google Cloud Console, OAuth
+          consent screens, test user setup, credentials JSON, and an
+          "unsafe app" warning. community projects have written five
+          separate tutorials just for this one integration. once connected,
+          the agent reads your entire real inbox. every password reset,
+          every 2FA code, every private message goes into the LLM context.
+        </p>
+        <div class="feature-row">
+          <span class="fr-name">setup</span>
+          <span class="fr-desc">Gmail OAuth takes 30+ minutes and a Google Cloud project. rhobot mail takes one line pasted to your agent.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">isolation</span>
+          <span class="fr-desc">Gmail gives the agent your whole inbox. rhobot mail gives the agent its own address. your real email stays private.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">cost</span>
+          <span class="fr-desc">a dedicated Gmail workspace inbox is $7/mo. other agent email providers charge $20/mo for 10 inboxes. this is free.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">filtering</span>
+          <span class="fr-desc">Gmail has spam filters built for humans. rhobot mail has a sender allowlist built for agents. unknown senders never reach the LLM.</span>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="section">
+        <div class="section-label">// security</div>
+        <h2>prompt injection defense</h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          an open agent inbox is a prompt injection surface. someone sends
+          "ignore all previous instructions" and your agent processes it.
+          rhobot mail prevents this with a two-layer sender allowlist.
+        </p>
+        <div class="feature-row">
+          <span class="fr-name">layer 1: server</span>
+          <span class="fr-desc">email worker checks the allowlist at ingestion. unknown senders stored as "held", never "unread".</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">layer 2: client</span>
+          <span class="fr-desc">the agent filters again before reading. even if the server misses one, the LLM never sees it.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">review</span>
+          <span class="fr-desc">held messages sit in a queue. you approve senders manually. the agent can't auto-approve.</span>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="section">
+        <div class="section-label">// pricing</div>
+        <h2>what you get</h2>
+        <table class="limits-table">
+          <thead>
+            <tr><th></th><th class="tier-free">free</th><th class="tier-pro">pro <span class="tier-badge">coming soon</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>inbound email</td><td>25/day</td><td>500/day</td></tr>
+            <tr><td>outbound email</td><td>5/hour</td><td>50/hour</td></tr>
+            <tr><td>agents</td><td>1</td><td>5</td></tr>
+            <tr><td>sender allowlist</td><td>5 senders</td><td>unlimited</td></tr>
+            <tr><td>attachments</td><td>7-day retention</td><td>full retention</td></tr>
+            <tr><td>message retention</td><td>30 days</td><td>1 year</td></tr>
+            <tr><td>storage</td><td>100 MB</td><td>5 GB</td></tr>
+            <tr><td>email forwarding</td><td>--</td><td>yes</td></tr>
+            <tr><td>forward redaction</td><td>--</td><td>yes</td></tr>
+            <tr><td>API access</td><td>full</td><td>full</td></tr>
+            <tr><td></td><td class="tier-free">$0</td><td class="tier-pro">$5/mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Coming soon -->
+      <div class="section">
+        <div class="section-label">// on the roadmap</div>
+        <h2>what's next</h2>
+        <div class="feature-row">
+          <span class="fr-name">recipient allowlist</span>
+          <span class="fr-desc">control exactly who your agent can email. empty by default, nothing goes out until you approve it.</span>
+        </div>
+        <div class="feature-row">
+          <span class="fr-name">forward redaction</span>
+          <span class="fr-desc">forward someone's email to your agent and their address gets stripped automatically. the agent processes the content but never learns who sent it.</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <div class="cta-links">
+          <a href="/skill.md">skill.md</a>
+          <a href="https://api.rhobot.dev/v1/health">api health</a>
+          <a href="/">rhobot.dev</a>
+          <a href="https://x.com/tau_rho_ai">@tau_rho_ai</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span>rhobot mail // free tier // 2026</span>
+        <div>
+          <a href="/terms">terms</a>
+          <a href="/privacy">privacy</a>
+          <a href="/refund">refunds</a>
+          <a href="https://github.com/mikeyobrien/rho">github</a>
+          <a href="/">rho</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showPanel(which) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.split-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + which).classList.add('active');
+      document.getElementById('btn-' + which).classList.add('active');
+    }
+
+    function copyInstruction() {
+      navigator.clipboard.writeText('Read https://rhobot.dev/skill.md and follow the instructions.').then(() => {
+        const h = document.getElementById('inst-hint');
+        h.textContent = 'copied';
+        setTimeout(() => { h.textContent = 'click to copy'; }, 2000);
+      });
+    }
+
+    function copyHumanInstall() {
+      navigator.clipboard.writeText('curl -fsSL https://rhobot.dev/install | bash').then(() => {
+        const h = document.getElementById('human-hint');
+        h.textContent = 'copied';
+        setTimeout(() => { h.textContent = 'click to copy'; }, 2000);
+      });
+    }
+
+    (async function() {
+      try {
+        const health = await fetch('https://api.rhobot.dev/v1/health').then(r => r.json());
+        document.getElementById('stat-uptime').textContent = health.ok ? 'ok' : 'degraded';
+        document.getElementById('stat-uptime').style.color = health.ok ? 'var(--green)' : 'var(--yellow)';
+      } catch {
+        document.getElementById('stat-uptime').textContent = 'down';
+        document.getElementById('stat-uptime').style.color = 'var(--red)';
+      }
+
+      try {
+        const stats = await fetch('https://api.rhobot.dev/v1/stats').then(r => r.json());
+        if (stats.ok) {
+          document.getElementById('stat-agents').textContent = stats.agents.toLocaleString();
+          document.getElementById('stat-emails').textContent = (stats.emails_received + stats.emails_sent).toLocaleString();
+        }
+      } catch {
+        document.getElementById('stat-agents').textContent = '--';
+        document.getElementById('stat-emails').textContent = '--';
+      }
+    })();
+  </script>
+</body>
+</html>

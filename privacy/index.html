@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rhobot.dev privacy policy</title>
+  <meta name="description" content="Privacy Policy for rhobot.dev and Rho Cloud services.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-alt: #111111;
+      --bg-card: #161616;
+      --border: #1a1a1a;
+      --border-bright: #2a2a2a;
+      --text: #c8c8c8;
+      --text-muted: #666666;
+      --text-dim: #444444;
+      --green: #22c55e;
+      --cyan: #5eead4;
+      --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 15px; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { color: var(--cyan); font-size: 0.9em; }
+
+    .container {
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    nav {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: stretch;
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-seg {
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .nav-seg-logo {
+      color: var(--bg);
+      background: var(--green);
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+    }
+
+    .nav-sep {
+      color: var(--green);
+      font-size: 1.6rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    main { padding: 3rem 0 4rem; }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin: 1.75rem 0 0.75rem;
+      font-weight: 700;
+    }
+
+    p { margin: 0.75rem 0; }
+    ul { margin: 0.5rem 0 0.75rem 1.25rem; }
+    li { margin: 0.35rem 0; }
+
+    .muted { color: var(--text-muted); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-alt);
+      padding: 1.25rem 0;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    footer a { color: var(--text-dim); margin-left: 1rem; }
+    footer a:hover { color: var(--text-muted); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .nav-inner { padding: 0 1rem; }
+      .nav-seg { padding: 0.6rem 0.75rem; }
+      .nav-seg-logo { padding: 0.6rem 0.75rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-seg nav-seg-logo">rhobot</div><div class="nav-sep"></div><div class="nav-seg" style="color:var(--text-muted);">privacy</div>
+      <div class="nav-links">
+        <a href="/">rho</a>
+        <a href="/email">email</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h1>privacy policy</h1>
+      <div class="sub">last updated: 2026-02-06</div>
+
+      <div class="card">
+        <p class="muted">
+          Short version: we store what you send us so your agent can read it later. We do not sell your data.
+        </p>
+      </div>
+
+      <h2>1. scope</h2>
+      <p>
+        This policy covers rhobot.dev and the Rho Cloud API at <code>api.rhobot.dev</code> (the "Service").
+      </p>
+
+      <h2>2. what we collect</h2>
+      <ul>
+        <li><b>Account data:</b> an email address from our identity provider (Clerk) when you claim an account.</li>
+        <li><b>Agent data:</b> agent email addresses you register (for example <code>name@rhobot.dev</code>).</li>
+        <li><b>Message data:</b> inbound email metadata (sender, subject, timestamps) and message bodies.</li>
+        <li><b>Attachments:</b> files attached to inbound messages, when present.</li>
+        <li><b>Operational logs:</b> limited logs needed to debug delivery and abuse.</li>
+      </ul>
+
+      <h2>3. how we use data</h2>
+      <p>
+        We use this data to provide the Service: receive email, store it, show it to your agent, and send outbound mail when enabled.
+        We also use it to enforce limits, prevent abuse, and keep the system running.
+      </p>
+
+      <h2>4. retention</h2>
+      <p>
+        Retention depends on your plan. Free accounts keep less and expire sooner.
+        Paid plans keep more and expire later. We may delete or archive older data.
+      </p>
+
+      <h2>5. sharing</h2>
+      <p>
+        We do not sell your data.
+      </p>
+      <p>
+        We share data with service providers only as needed to run the Service:
+      </p>
+      <ul>
+        <li><b>Cloudflare</b> (hosting, storage, email routing)</li>
+        <li><b>Clerk</b> (sign-in and identity)</li>
+        <li><b>Paddle</b> (payments for paid plans)</li>
+      </ul>
+
+      <h2>6. security</h2>
+      <p>
+        No system is perfect. We do basic security hygiene and access controls, but you should not send sensitive data unless you understand the risk.
+        You are responsible for protecting your API key.
+      </p>
+
+      <h2>7. your choices</h2>
+      <p>
+        You can delete agents, which deletes associated messages.
+        You can also contact us to request deletion of your account.
+      </p>
+
+      <h2>8. contact</h2>
+      <p>
+        Privacy questions: <a href="mailto:tau@rhobot.dev">tau@rhobot.dev</a>.
+      </p>
+
+      <h2>9. changes</h2>
+      <p>
+        We may update this policy. If you keep using the Service, you accept the updated policy.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span>rhobot.dev // privacy</span>
+        <div>
+          <a href="/terms">terms</a>
+          <a href="/refund">refunds</a>
+          <a href="/email">email</a>
+          <a href="/">rho</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

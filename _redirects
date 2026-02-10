@@ -1,2 +1,5 @@
 /install https://raw.githubusercontent.com/mikeyobrien/rho/main/install.sh 302
 /docs https://github.com/mikeyobrien/rho#readme 302
+
+# SPA fallback for claim flow
+/claim/* /claim/ 200

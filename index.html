@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rho -- a persistent AI agent</title>
-  <meta name="description" content="An AI agent that stays running, remembers across sessions, and checks in on a schedule. Runs on your phone, laptop, or server. Open source.">
-  <meta property="og:title" content="rho -- an AI agent that persists">
-  <meta property="og:description" content="An AI agent that stays running, remembers across sessions, and checks in on a schedule. Open source.">
+  <meta name="description" content="A persistent AI agent with memory, a heartbeat, and the ability to act. Runs locally on your phone, laptop, or server. Open source.">
+  <meta property="og:title" content="rho -- a persistent AI agent">
+  <meta property="og:description" content="A persistent AI agent with memory, a heartbeat, and the ability to act. Runs locally.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runrho.dev">
-  <meta property="og:image" content="https://runrho.dev/og-card.png">
+  <meta property="og:url" content="https://rhobot.dev">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@tau_rho_ai">
-  <meta name="twitter:image" content="https://runrho.dev/og-card.png">
+  <meta property="og:image" content="https://rhobot.dev/og-image.png">
+  <meta name="twitter:image" content="https://rhobot.dev/og-image.png">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -351,70 +351,6 @@
       text-align: right;
     }
 
-    /* ---- Providers ---- */
-    .provider-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(18ch, 1fr));
-      gap: 0;
-      border: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-
-    .provider {
-      padding: 0.6rem 0.75rem;
-      border-bottom: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .provider .p-name { color: var(--text); }
-    .provider .p-via { color: var(--text-dim); font-size: 0.7rem; }
-    .provider .p-check { color: var(--green); }
-
-    .provider-note {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
-
-    /* ---- iPhone SSH ---- */
-    .ssh-steps {
-      list-style: none;
-      font-size: 0.85rem;
-    }
-
-    .ssh-steps li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .ssh-steps li:last-child { border-bottom: none; }
-    .ssh-steps .s-num { color: var(--text-dim); min-width: 2ch; }
-    .ssh-steps .s-text { color: var(--text-muted); }
-    .ssh-steps code { font-size: 0.8rem; }
-
-    .ssh-hosts {
-      display: flex;
-      gap: 0;
-      margin-top: 1rem;
-      border: 1px solid var(--border);
-      width: fit-content;
-      font-size: 0.8rem;
-    }
-
-    .ssh-host {
-      padding: 0.35rem 0.75rem;
-      border-right: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-
-    .ssh-host:last-child { border-right: none; }
-    .ssh-host.free { color: var(--green); }
-
     /* ---- Cost comparison ---- */
     .cost-row {
       display: flex;
@@ -428,14 +364,6 @@
     .cost-row .label { color: var(--text-muted); }
     .cost-row .value { color: var(--text); }
     .cost-row .value.highlight { color: var(--green); }
-    .cost-row .value.dim { color: var(--text-dim); }
-    .cost-row .value.strikethrough { text-decoration: line-through; color: var(--text-dim); }
-
-    .cost-note {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-top: 0.75rem;
-    }
 
     /* ---- CTA ---- */
     .cta {
@@ -503,9 +431,6 @@
       .footer-inner { flex-direction: column; gap: 0.5rem; }
       .platforms { flex-wrap: wrap; }
       .cost-row { font-size: 0.8rem; }
-      .provider-grid { grid-template-columns: 1fr 1fr; }
-      .ssh-steps li { flex-direction: column; gap: 0.25rem; }
-      .ssh-hosts { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -516,8 +441,7 @@
       <div class="nav-links">
         <a href="#features">features</a>
         <a href="#how">setup</a>
-        <a href="#cost">cost</a>
-        <a href="#skills">skills</a>
+        <a href="/email">email</a>
         <a href="https://github.com/mikeyobrien/rho">source</a>
       </div>
     </div>
@@ -526,12 +450,12 @@
   <main>
     <section class="hero">
       <div class="container">
-        <div class="hero-tagline">v0.1 // open source // runs on your device</div>
+        <div class="hero-tagline">v0.1 // open source // local-first</div>
         <h1>an ai agent that <em>persists</em>.<br>memory. heartbeat. action.</h1>
         <p class="hero-desc">
           rho runs on your device -- phone, laptop, server. it remembers across
           sessions, checks in on a schedule, and acts when you're not looking.
-          a process that stays running.
+          not a chat window. not a cloud service. a process that stays running.
         </p>
 
         <div class="install" onclick="copyInstall()" title="click to copy">
@@ -551,7 +475,6 @@
           </div>
           <img src="demo.gif" alt="rho agent running in tmux" loading="lazy">
         </div>
-
 
         <div class="platforms">
           <div class="platform active">android/termux</div>
@@ -573,27 +496,23 @@
           </li>
           <li>
             <span class="fl-name">heartbeat</span>
-            <span class="fl-desc">checks in on a timer. reads your checklist, runs scheduled tasks, reports back. configurable interval.</span>
+            <span class="fl-desc">periodic autonomous check-ins. reads your checklist, runs scheduled tasks, monitors what matters. configurable interval.</span>
           </li>
           <li>
             <span class="fl-name">device control</span>
-            <span class="fl-desc">on android with tasker: read screens, tap buttons, open apps, type text.</span>
+            <span class="fl-desc">on android with tasker: read screens, tap buttons, open apps, type text. your phone becomes an agent platform.</span>
           </li>
           <li>
             <span class="fl-name">brain</span>
-            <span class="fl-desc">structured knowledge store. core knowledge, memories, context, and archives as plain JSONL files.</span>
-          </li>
-          <li>
-            <span class="fl-name">agent email</span>
-            <span class="fl-desc">your agent gets an inbox at name@runrho.dev. receive, read, reply. sender allowlist prevents prompt injection. works with any agent harness.</span>
+            <span class="fl-desc">structured knowledge store. not chat logs -- core knowledge, memories, context, archives.</span>
           </li>
           <li>
             <span class="fl-name">extensions</span>
             <span class="fl-desc">typescript extensions loaded at runtime. memory viewer, usage tracking, web search, tasker bridge. write your own.</span>
           </li>
           <li>
-            <span class="fl-name">your data</span>
-            <span class="fl-desc">memories, config, and skills are plain files on your machine. bring your own llm provider. you own everything.</span>
+            <span class="fl-name">local-first</span>
+            <span class="fl-desc">data stays on your device. no cloud for your memories. bring your own llm provider. you own everything.</span>
           </li>
         </ul>
       </div>
@@ -624,25 +543,6 @@
       </div>
     </section>
 
-    <section id="providers">
-      <div class="container">
-        <div class="section-header">// providers</div>
-        <h2>use your existing subscription</h2>
-        <div class="provider-grid">
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">Claude Pro</span> <span class="p-via">OAuth</span></div>
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">ChatGPT Plus</span> <span class="p-via">OAuth</span></div>
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">Gemini</span> <span class="p-via">OAuth</span></div>
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">Codex</span> <span class="p-via">OAuth</span></div>
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">Anthropic API</span> <span class="p-via">key</span></div>
-          <div class="provider"><span class="p-check">*</span> <span class="p-name">OpenAI API</span> <span class="p-via">key</span></div>
-        </div>
-        <p class="provider-note">
-          <code>rho login</code> connects via OAuth. no api keys needed for consumer subscriptions.
-          the agent picks the cheapest model for heartbeat check-ins automatically.
-        </p>
-      </div>
-    </section>
-
     <section id="cost">
       <div class="container">
         <div class="section-header">// cost</div>
@@ -653,29 +553,20 @@
         </div>
         <div class="cost-row">
           <span class="label">heartbeat (48 check-ins/day)</span>
-          <span class="value">~$0.05/day with smart model routing</span>
+          <span class="value">~$0.05/day with smart routing</span>
         </div>
         <div class="cost-row">
           <span class="label">hosting (android)</span>
-          <span class="value highlight">$0 -- runs on your phone</span>
+          <span class="value">$0 -- runs on your phone</span>
         </div>
         <div class="cost-row">
           <span class="label">hosting (iphone via ssh)</span>
-          <span class="value">$0-5/mo -- free tier VPS available</span>
+          <span class="value">$0-5/mo -- free with oracle cloud</span>
         </div>
         <div class="cost-row">
-          <span class="label">open-source agent frameworks</span>
-          <span class="value dim">$20-600/mo in API costs</span>
+          <span class="label">comparable agent services</span>
+          <span class="value" style="color:var(--text-dim);">$20-50/month</span>
         </div>
-        <div class="cost-row">
-          <span class="label">managed agent services</span>
-          <span class="value dim">$20-50/mo + API costs</span>
-        </div>
-        <p class="cost-note">
-          most agent frameworks require dedicated API keys and burn tokens on every
-          heartbeat. rho uses your existing coding subscription via OAuth and routes
-          heartbeats to the cheapest available model.
-        </p>
       </div>
     </section>
 
@@ -694,7 +585,6 @@
             <tr><td>text-to-speech</td><td>all</td></tr>
             <tr><td>code-assist</td><td>all</td></tr>
             <tr><td>web-search</td><td>all</td></tr>
-            <tr><td>agent-email</td><td>all</td></tr>
             <tr><td>sms</td><td>android</td></tr>
             <tr><td>camera</td><td>android</td></tr>
             <tr><td>location</td><td>android</td></tr>
@@ -706,47 +596,10 @@
       </div>
     </section>
 
-    <section id="iphone">
-      <div class="container">
-        <div class="section-header">// iphone / ipad</div>
-        <h2>ssh in from anywhere</h2>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">
-          rho runs on a server. connect from your phone with any ssh client.
-          the tmux config is mobile-optimized out of the box.
-        </p>
-        <ol class="ssh-steps">
-          <li>
-            <span class="s-num">1</span>
-            <span class="s-text">set up a server -- home machine, VPS, or free Oracle Cloud instance</span>
-          </li>
-          <li>
-            <span class="s-num">2</span>
-            <span class="s-text">install rho: <code>curl -fsSL https://rhobot.dev/install | bash</code></span>
-          </li>
-          <li>
-            <span class="s-num">3</span>
-            <span class="s-text">start in background: <code>rho login && rho -d</code></span>
-          </li>
-          <li>
-            <span class="s-num">4</span>
-            <span class="s-text">connect from iPhone with <a href="https://apps.apple.com/app/termius-terminal-ssh-client/id549039908">Termius</a> or any SSH client</span>
-          </li>
-        </ol>
-        <div class="ssh-hosts">
-          <div class="ssh-host free">oracle cloud (free)</div>
-          <div class="ssh-host">hetzner ($4/mo)</div>
-          <div class="ssh-host">digitalocean ($4/mo)</div>
-          <div class="ssh-host">home + tailscale</div>
-        </div>
-      </div>
-    </section>
-
     <section class="cta">
       <div class="container">
         <h2>get started</h2>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">email <a href="mailto:tau@runrho.dev">tau@runrho.dev</a> to see it in action.</p>
         <div class="cta-links">
-          <a href="https://cloud.runrho.dev/skill.md"><span class="arrow">--></span> give your agent an email (skill.md)</a>
           <a href="https://github.com/mikeyobrien/rho"><span class="arrow">--></span> source on github</a>
           <a href="https://github.com/mikeyobrien/rho#install"><span class="arrow">--></span> installation docs</a>
           <a href="https://x.com/tau_rho_ai"><span class="arrow">--></span> @tau_rho_ai on x</a>
@@ -758,8 +611,11 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <span>rho // mit license // 2026</span>
+        <span>rho // mit license // 2025</span>
         <div>
+          <a href="/terms">terms</a>
+          <a href="/privacy">privacy</a>
+          <a href="/refund">refunds</a>
           <a href="https://github.com/mikeyobrien/rho">github</a>
           <a href="https://x.com/tau_rho_ai">x</a>
         </div>
