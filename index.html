@@ -489,7 +489,12 @@
     /* ---- Responsive ---- */
     @media (max-width: 600px) {
       html { font-size: 14px; }
-      .nav-links { display: none; }
+      .nav-inner { padding: 0 1rem; flex-wrap: wrap; }
+      .nav-seg { padding: 0.6rem 0.75rem; }
+      .nav-seg-logo { padding: 0.6rem 0.75rem; }
+      .nav-seg-tagline { display: none; }
+      .nav-links { width: 100%; margin-left: 0; padding-bottom: 0.6rem; gap: 1rem; flex-wrap: wrap; }
+      .nav-links a { font-size: 0.75rem; }
       .feature-list li { flex-direction: column; gap: 0.25rem; }
       .feature-list .fl-name { min-width: auto; }
       .steps-list li { flex-direction: column; gap: 0.25rem; }
@@ -507,7 +512,7 @@
 <body>
   <nav>
     <div class="nav-inner">
-      <div class="nav-seg nav-seg-logo">rho</div><div class="nav-sep"></div><div class="nav-seg" style="color:var(--text-muted);">persistent ai agent</div>
+      <div class="nav-seg nav-seg-logo">rho</div><div class="nav-sep"></div><div class="nav-seg nav-seg-tagline" style="color:var(--text-muted);">persistent ai agent</div>
       <div class="nav-links">
         <a href="#features">features</a>
         <a href="#how">setup</a>
@@ -531,7 +536,7 @@
 
         <div class="install" onclick="copyInstall()" title="click to copy">
           <span class="prompt">$</span>
-          <span class="cmd">curl -fsSL https://runrho.dev/install | bash</span>
+          <span class="cmd">curl -fsSL https://rhobot.dev/install | bash</span>
           <span class="hint" id="copy-hint">click to copy</span>
         </div>
         <div class="install-note">
@@ -716,7 +721,7 @@
           </li>
           <li>
             <span class="s-num">2</span>
-            <span class="s-text">install rho: <code>curl -fsSL https://runrho.dev/install | bash</code></span>
+            <span class="s-text">install rho: <code>curl -fsSL https://rhobot.dev/install | bash</code></span>
           </li>
           <li>
             <span class="s-num">3</span>
@@ -764,7 +769,7 @@
 
   <script>
     function copyInstall() {
-      navigator.clipboard.writeText('curl -fsSL https://runrho.dev/install | bash').then(() => {
+      navigator.clipboard.writeText('curl -fsSL https://rhobot.dev/install | bash').then(() => {
         const h = document.getElementById('copy-hint');
         h.textContent = 'copied';
         setTimeout(() => { h.textContent = 'click to copy'; }, 2000);
