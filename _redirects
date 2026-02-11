@@ -1,6 +1,6 @@
 /install https://raw.githubusercontent.com/mikeyobrien/rho/main/install.sh 302
 /docs https://github.com/mikeyobrien/rho#readme 302
 
-# SPA fallback for claim flow (static assets served first by Pages)
+# Claim SPA: assets pass through, everything else rewrites to the SPA shell
 /claim/assets/* /claim/assets/:splat 200
-/claim/* /claim/index.html 200
+/claim/* /claim/ 200
