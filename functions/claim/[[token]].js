@@ -1,16 +1,16 @@
 // Catch-all for /claim/:token paths.
 // Serves the claim SPA's index.html so the React router can handle the token.
-// Static assets under /claim/assets/* are served directly by Pages (no function invoked).
+// Static assets under /claim/assets/* are served directly via ASSETS binding.
 
 export async function onRequest(context) {
   const url = new URL(context.request.url);
 
-  // Don't intercept actual static assets
-  if (url.pathname.startsWith('/claim/assets/')) {
-    return context.next();
+  // Serve actual static assets directly from the asset binding
+  if (url.pathname.startsWith('/claim/assets/') || url.pathname === '/claim/vite.svg') {
+    return context.env.ASSETS.fetch(context.request);
   }
 
-  // Fetch the claim SPA index.html from the static assets
+  // Everything else gets the SPA index.html
   const spaUrl = new URL('/claim/index.html', url.origin);
   const response = await context.env.ASSETS.fetch(spaUrl);
 
